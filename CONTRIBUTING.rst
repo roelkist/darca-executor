@@ -1,161 +1,81 @@
-=======================================
-Contributing to Darca Exception
-=======================================
+Contributing to Darca Executor
+==============================
 
-Thank you for considering contributing to **Darca Exception**!  
-Contributions help make this project better, and we welcome **bug reports, feature requests, and pull requests**.  
-
----
-
-🚀 **How to Contribute**
---------------------
-We welcome contributions in the following ways:
-
-- **Report Bugs** – If you find an issue, please report it under `Issues`.
-- **Request Features** – Have a great idea? Open a feature request!
-- **Submit Pull Requests** – Help improve the project by fixing bugs or adding enhancements.
+First off, thank you for considering contributing to **Darca Executor**.  
+Your ideas, suggestions, code, and feedback are what make this project better.
 
 ---
 
-🔍 **Reporting Bugs**
---------------------
-If you find a bug, please check the `Issues` tab to see if it has already been reported.  
-If not, create a new issue with the following details:
+Getting Started
+---------------
 
-1. **Describe the bug** – What is happening?
-2. **Steps to reproduce** – How can we reproduce the bug?
-3. **Expected behavior** – What should happen instead?
-4. **Screenshots or logs (if applicable)** – Helps us understand the issue better.
-5. **Environment details** – Python version, OS, etc.
-
-📌 **Submit your bug report here:**  
-`https://github.com/roelkist/darca-exception/issues`
-
----
-
-💡 **Requesting Features**
---------------------
-Have an idea to improve the project? Submit a **Feature Request** with:
-
-1. **Feature description** – Explain your idea clearly.
-2. **Use case** – How would this help users?
-3. **Potential implementation** (if possible) – Any thoughts on how to add it?
-
-📌 **Submit your feature request here:**  
-`https://github.com/roelkist/darca-exception/issues`
-
----
-
-🛠 **Submitting a Pull Request (PR)**
---------------------
-### **1. Fork & Clone**
-First, clone the repository:
-
-.. code-block:: bash
-
-    git clone https://github.com/roelkist/darca-exception.git
-    cd darca-exception
-
-### **2. Create a New Branch**
-Always create a new branch for your contribution:
-
-.. code-block:: bash
-
-    git checkout -b feature/new-exception-handler
-
-### **3. Install Dependencies**
-Set up your environment:
+To get started with local development:
 
 .. code-block:: bash
 
     make install
 
-### **4. Make Your Changes**
-- Follow the project’s coding style.
-- Ensure your code is **well-documented** and **tested**.
+This sets up a Poetry environment in `/tmp/darca-executor-venv` and installs all dependencies.
 
-### **5. Run Pre-Commit & Tests**
-Before submitting, ensure everything is correctly formatted and tested:
+---
+
+Pre-Commit Checklist
+--------------------
+
+Before pushing your code or opening a Pull Request, run the following:
 
 .. code-block:: bash
 
-    make check  # Formats, runs pre-commit, and tests
+    make check
 
-### **6. Commit and Push**
-Commit your changes with a meaningful message:
+This will:
 
-.. code-block:: bash
-
-    git add .
-    git commit -m "Add new exception type for better error handling"
-    git push origin feature/new-exception-handler
-
-### **7. Open a Pull Request**
-- Go to the repository on GitHub.
-- Click "New Pull Request".
-- Select your branch and submit the PR.
-
-**PR Guidelines:**
-- **Reference the related issue (if applicable).**
-- **Explain what your PR does and why it's needed.**
-- **Include test results/screenshots if relevant.**
+- Auto-format your code (via Black + isort)
+- Run pre-commit hooks (linting, checks)
+- Run the full test suite with coverage
+- Build the documentation to ensure it's error-free
 
 ---
 
-✅ **Code Guidelines**
---------------------
-To maintain code consistency, follow these guidelines:
+How to Contribute
+-----------------
 
-1. **Formatting** – Code should be formatted using `black` and `isort`:
-   
-   .. code-block:: bash
+We welcome:
 
-       make format
-
-2. **Linting & Static Analysis** – Run `pre-commit` before pushing:
-
-   .. code-block:: bash
-
-       make precommit
-
-3. **Testing** – Ensure all tests pass:
-
-   .. code-block:: bash
-
-       make test
-
-4. **Keep Changes Focused** – PRs should be **small and focused** on one feature or bug fix.
+- 🐞 **Bug Reports** — Submit an issue with a clear reproduction.
+- 💡 **Feature Requests** — Have a cool idea? Open an issue and describe it.
+- 🛠  **Pull Requests** — Fix a bug, improve tests, or add functionality.
 
 ---
 
-📖 **Documentation Contributions**
---------------------
-If you're improving documentation:
+Pull Request Guidelines
+-----------------------
 
-- Edit the RST files in `docs/source/`.
-- Run:
-
-  .. code-block:: bash
-
-      make docs
-
-- Open a PR with your improvements!
+1. Fork the repository
+2. Create a new branch: `git checkout -b feat/your-feature-name`
+3. Make your changes
+4. Ensure `make check` passes
+5. Push to your fork and submit a Pull Request
 
 ---
 
-🗑 **Cleaning Up**
---------------------
-To remove virtual environments and reset dependencies:
+Best Practices
+--------------
 
-.. code-block:: bash
+- Keep your code Pythonic and consistent with existing patterns.
+- Use `DarcaExecutor` and `DarcaExecError` consistently for command execution and error handling.
+- Add or update tests for any new functionality.
+- Keep docstrings and logging clear and helpful.
 
-    make clean
+---
+
+Communication
+-------------
+
+We encourage open communication via GitHub Issues and Pull Requests.
+
+Whether it's a suggestion, bug, or a "hey this is cool" — we want to hear from you!
 
 ---
 
-🎉 **Thank You!**
---------------------
-Your contributions make **Darca Exception** better for everyone! 🚀  
-Feel free to ask questions or discuss improvements in the **Issues** section.
-
----
+Thank you again for helping make Darca Executor awesome! 🚀

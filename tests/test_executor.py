@@ -1,8 +1,10 @@
 # tests/test_executor.py
 
 import os
+
 import pytest
-from darca_executor import DarcaExecutor, DarcaExecError
+
+from darca_executor import DarcaExecError
 
 
 def test_successful_command(executor):
@@ -10,7 +12,11 @@ def test_successful_command(executor):
     Test a basic command that should succeed.
     Works for both shell and non-shell modes.
     """
-    command = "echo Hello, Darca!" if executor.use_shell else ["echo", "Hello, Darca!"]
+    command = (
+        "echo Hello, Darca!"
+        if executor.use_shell
+        else ["echo", "Hello, Darca!"]
+    )
     result = executor.run(command)
     assert result.returncode == 0
     assert "Hello, Darca!" in result.stdout
@@ -34,8 +40,11 @@ def test_command_with_stderr_output(executor):
     """
     Test a command that writes to stderr but still exits with 0.
     """
-    cmd = "python -c 'import sys; sys.stderr.write(\"warning\\n\")'" if executor.use_shell \
+    cmd = (
+        "python -c 'import sys; sys.stderr.write(\"warning\\n\")'"
+        if executor.use_shell
         else ["python", "-c", "import sys; sys.stderr.write('warning\\n')"]
+    )
 
     result = executor.run(cmd)
     assert result.returncode == 0
@@ -47,8 +56,11 @@ def test_command_in_temp_dir(executor, temp_working_dir):
     Test creating a file in a temporary working directory.
     """
     file_name = "test_output.txt"
-    cmd = f"echo DarcaRocks > {file_name}" if executor.use_shell \
+    cmd = (
+        f"echo DarcaRocks > {file_name}"
+        if executor.use_shell
         else ["sh", "-c", f"echo DarcaRocks > {file_name}"]
+    )
 
     executor.run(cmd)
     assert os.path.exists(file_name)

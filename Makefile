@@ -5,7 +5,7 @@ SHELL := /bin/bash  # Ensure Bash is used
 .PHONY: all install add-deps format test precommit docs check ci clean venv poetry
 
 # Store virtual environment and Poetry cache outside of NFS
-VENV_PATH := /tmp/darca-exception-venv
+VENV_PATH := /tmp/darca-executor-venv
 POETRY_HOME := /tmp/poetry-cache
 POETRY_CONFIG_DIR := /tmp/poetry-config
 PYTHONPYCACHEPREFIX := /tmp/pycache

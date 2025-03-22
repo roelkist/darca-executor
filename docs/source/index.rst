@@ -13,6 +13,9 @@ Documentation List
    :maxdepth: 4
    :caption: Contents:
 
+   usage
+   api
+
 
 Indices and tables
 ==================

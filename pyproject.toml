@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "darca-exception"
+name = "darca-executor"
 version = "0.1.0"
-description = "Exception module for reuse along projects."
+description = "Execution module for reuse along projects.."
 authors = ["Roel Kist <roel.kist@gmail.com>"]
 license = "LICENSE"
 readme = "README.rst"
@@ -9,6 +9,7 @@ readme = "README.rst"
 [tool.poetry.dependencies]
 python = "^3.12"
 darca-log-facility = "^0.1.0"
+darca-exception = "^0.1.0"
 
 
 [tool.poetry.group.dev.dependencies]
