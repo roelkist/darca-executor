@@ -26,7 +26,12 @@ class DarcaExecError(DarcaException):
             "stdout": stdout,
             "stderr": stderr,
         }
-        super().__init__(message, metadata=metadata, cause=cause)
+        super().__init__(
+            message,
+            error_code="DARCA_EXEC_ERROR",  # ✅ Explicit error code
+            metadata=metadata,
+            cause=cause,
+        )
 
 
 class DarcaExecutor:

@@ -1,10 +1,12 @@
 # tests/test_executor.py
 
 import os
+import subprocess
+from unittest import mock
 
 import pytest
 
-from darca_executor import DarcaExecError
+from darca_executor import DarcaExecError, DarcaExecutor
 
 
 def test_successful_command(executor):
@@ -82,3 +84,62 @@ def test_command_with_custom_env(executor, safe_env):
 
     result = executor.run(cmd, env=safe_env)
     assert "C.UTF-8" in result.stdout
+
+
+def test_invalid_command_type_shell():
+    """Test that ValueError is raised for non-string when shell=True."""
+    executor = DarcaExecutor(use_shell=True)
+    with pytest.raises(ValueError, match="must be a string"):
+        executor.run(["not", "a", "string"])
+
+
+def test_invalid_command_type_no_shell():
+    """Test that ValueError is raised for non-list when shell=False."""
+    executor = DarcaExecutor(use_shell=False)
+    with pytest.raises(ValueError, match="must be a list"):
+        executor.run("not-a-list")
+
+
+@pytest.mark.parametrize("use_shell", [True, False])
+def test_timeout_expired(use_shell):
+    """Trigger a subprocess.TimeoutExpired error."""
+    executor = DarcaExecutor(use_shell=use_shell)
+    cmd = "sleep 10" if use_shell else ["sleep", "10"]
+
+    with pytest.raises(DarcaExecError) as exc_info:
+        executor.run(cmd, timeout=0.1)
+
+    error = exc_info.value
+    assert error.metadata["command"]
+    assert error.error_code == "DARCA_EXEC_ERROR"
+    assert "timed out" in str(error)
+
+
+def test_generic_subprocess_error(monkeypatch):
+    """Simulate a generic SubprocessError path using mocking."""
+    executor = DarcaExecutor(use_shell=False)
+
+    def raise_subprocess_error(*args, **kwargs):
+        raise subprocess.SubprocessError("generic failure")
+
+    with mock.patch("subprocess.run", raise_subprocess_error):
+        with pytest.raises(DarcaExecError) as exc_info:
+            executor.run(["fake"])
+
+    assert exc_info.value.error_code == "DARCA_EXEC_ERROR"
+    assert "Subprocess error" in str(exc_info.value)
+
+
+def test_unexpected_exception(monkeypatch):
+    """Force a fallback Exception path (e.g., TypeError)."""
+    executor = DarcaExecutor()
+
+    def raise_type_error(*args, **kwargs):
+        raise TypeError("Simulated failure")
+
+    with mock.patch("subprocess.run", raise_type_error):
+        with pytest.raises(DarcaExecError) as exc_info:
+            executor.run(["oops"])
+
+    assert exc_info.value.error_code == "DARCA_EXEC_ERROR"
+    assert "Unexpected error" in str(exc_info.value)

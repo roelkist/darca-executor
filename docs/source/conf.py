@@ -15,7 +15,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath("../../"))
 
-from src.darca_exception.__version__ import author, copyright, version
+from src.darca_executor.__version__ import author, copyright, version
 
 # -- Project information -----------------------------------------------------
 

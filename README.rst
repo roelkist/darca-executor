@@ -1,137 +1,73 @@
-Darca Executor
+darca-executor
 ==============
 
-**Darca Executor** is a Python module designed for secure and structured command execution.  
-It integrates tightly with the `darca-log-facility` and `darca-exception` ecosystem, ensuring consistent logging, structured error reporting, and clean extensibility.
+A secure and structured subprocess command executor for Python projects,
+featuring rich logging, customizable execution parameters, and robust
+exception handling.
 
-.. image:: coverage.svg
-   :target: coverage.svg
-   :alt: Test coverage badge
 
----
+Overview
+--------
+
+`darca-executor` wraps Python's `subprocess` with enhanced logging, structured
+error reporting, and testability. It is designed to work securely in both
+`use_shell=True` and `use_shell=False` modes.
 
 Features
 --------
 
-- 🛠  Execute system commands with subprocess safely and consistently.
-- 🧾  Structured error handling via `DarcaExecError` (based on `DarcaException`)
-- 📜  Rich logging integration with `DarcaLogger`
-- 🧪  Pytest-based test suite with coverage and formatting checks
-- 📚  Sphinx-ready documentation setup
-- 🧰  Built-in Makefile for all major development workflows
+- Shell and non-shell subprocess support
+- Built-in timeout, working directory, and environment handling
+- Captures stdout/stderr output
+- Integrates with custom Darca logging facility
+- Raises `DarcaExecError` with detailed metadata on failure
+- 100% test coverage with Pytest
 
----
+Quick Start
+-----------
+
+.. code-block:: python
+
+    from darca_executor import DarcaExecutor
+
+    executor = DarcaExecutor(use_shell=False)
+    result = executor.run(["echo", "Hello, Darca!"])
+    print(result.stdout)
 
 Installation
 ------------
 
-To get started with local development:
+Install dependencies using `make` and Poetry:
 
 .. code-block:: bash
 
     make install
 
-This installs all dependencies into a self-contained virtual environment in `/tmp/darca-executor-venv`.
+Testing
+-------
 
-To install additional packages:
-
-.. code-block:: bash
-
-    make add-deps group=dev deps="some-package"
-    make add-prod-deps deps="some-runtime-package"
-
----
-
-Usage
------
-
-Example usage of the executor:
-
-.. code-block:: python
-
-    from darca_executor import DarcaExecutor, DarcaExecError
-
-    executor = DarcaExecutor(use_shell=True)
-
-    try:
-        result = executor.run("echo Hello, Darca!")
-        print(result.stdout)
-    except DarcaExecError as e:
-        print(f"Command failed: {e}")
-
----
-
-Testing & Quality
------------------
-
-Run all checks (formatting, tests, coverage, precommit):
-
-.. code-block:: bash
-
-    make check
-
-Run tests with coverage output:
+Run all unit tests and generate a coverage report:
 
 .. code-block:: bash
 
     make test
 
-Run pre-commit hooks:
-
-.. code-block:: bash
-
-    make precommit
-
-Apply auto-formatting:
-
-.. code-block:: bash
-
-    make format
-
----
-
 Documentation
 -------------
 
-To build the docs:
+Build the documentation with:
 
 .. code-block:: bash
 
     make docs
 
-Docs will be available at: `docs/build/html/index.html`
-
----
-
-Continuous Integration
-----------------------
-
-The `make ci` command is used as the default entrypoint in GitHub Actions:
-
-.. code-block:: bash
-
-    make ci
-
-This will install dependencies, run precommit, test the codebase, and build the documentation.
-
----
-
-Contributing
-------------
-
-We welcome your contributions!
-
-Please see `CONTRIBUTING.rst <CONTRIBUTING.rst>`_ for details on how to get involved.
-
-You can:
-
-- 💡 Open feature requests or ideas via GitHub Issues
-- 🐛 Report bugs
-- 🔧 Submit Pull Requests for fixes, enhancements, or tests
-
----
-
 License
 -------
 
-This project is maintained by the Darca collective. License details TBD.
+This project is licensed under the MIT License.
+
+Badges
+------
+
+.. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
+    :target: https://opensource.org/licenses/MIT

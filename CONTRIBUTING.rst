@@ -1,81 +1,74 @@
-Contributing to Darca Executor
+Contributing to darca-executor
 ==============================
 
-First off, thank you for considering contributing to **Darca Executor**.  
-Your ideas, suggestions, code, and feedback are what make this project better.
+Thank you for considering contributing to **darca-executor**!
 
----
+We welcome:
+-----------
 
-Getting Started
----------------
-
-To get started with local development:
-
-.. code-block:: bash
-
-    make install
-
-This sets up a Poetry environment in `/tmp/darca-executor-venv` and installs all dependencies.
-
----
-
-Pre-Commit Checklist
---------------------
-
-Before pushing your code or opening a Pull Request, run the following:
-
-.. code-block:: bash
-
-    make check
-
-This will:
-
-- Auto-format your code (via Black + isort)
-- Run pre-commit hooks (linting, checks)
-- Run the full test suite with coverage
-- Build the documentation to ensure it's error-free
-
----
+- 🛠 Bug fixes
+- 🚀 New feature requests
+- 📚 Improvements to documentation
+- ✅ Additional test coverage
+- 🧪 Enhancements to CI/CD workflows
 
 How to Contribute
 -----------------
 
-We welcome:
+1. **Fork the repository**
+2. **Create a new branch** for your work:
+   
+   .. code-block:: bash
 
-- 🐞 **Bug Reports** — Submit an issue with a clear reproduction.
-- 💡 **Feature Requests** — Have a cool idea? Open an issue and describe it.
-- 🛠  **Pull Requests** — Fix a bug, improve tests, or add functionality.
+       git checkout -b feature/my-awesome-feature
 
----
+3. **Write your code**, making sure to include appropriate tests.
+4. **Run all checks before committing:**
 
-Pull Request Guidelines
------------------------
+   .. code-block:: bash
 
-1. Fork the repository
-2. Create a new branch: `git checkout -b feat/your-feature-name`
-3. Make your changes
-4. Ensure `make check` passes
-5. Push to your fork and submit a Pull Request
+       make check
 
----
+   This will:
+   - Format your code
+   - Run pre-commit hooks
+   - Run tests and ensure 100% coverage
 
-Best Practices
---------------
+5. **Commit and push** your changes.
+6. **Open a Pull Request** on GitHub targeting the `main` branch.
 
-- Keep your code Pythonic and consistent with existing patterns.
-- Use `DarcaExecutor` and `DarcaExecError` consistently for command execution and error handling.
-- Add or update tests for any new functionality.
-- Keep docstrings and logging clear and helpful.
+Reporting Bugs or Suggesting Features
+-------------------------------------
 
----
+If you’ve found a bug or have a feature request:
 
-Communication
--------------
+- Open an issue on GitHub with a clear description.
+- Include reproduction steps or example use cases if possible.
 
-We encourage open communication via GitHub Issues and Pull Requests.
+CI/CD
+-----
 
-Whether it's a suggestion, bug, or a "hey this is cool" — we want to hear from you!
+All pull requests are validated by the GitHub Actions CI pipeline which runs:
 
----
+.. code-block:: bash
 
-Thank you again for helping make Darca Executor awesome! 🚀
+    make ci
+
+This includes formatting checks, pre-commit hooks, tests, and documentation builds.
+
+Individual Commands
+-------------------
+
+You can also run commands separately if needed:
+
+- `make format` – Apply code formatters
+- `make precommit` – Run pre-commit hooks manually
+- `make test` – Run all tests with coverage report
+- `make docs` – Build the Sphinx documentation
+
+Questions?
+----------
+
+Feel free to open a discussion or reach out by opening an issue. We’re happy to help!
+
+Happy hacking! 💻✨
